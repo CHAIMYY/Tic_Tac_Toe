@@ -6,10 +6,15 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    
 }
 table {
+    background-color: rgb(196, 230, 242);
     border-collapse: collapse;
     margin: 20px;
+    
 }
 td {
     border: 1px solid #000;
@@ -17,6 +22,17 @@ td {
     height: 25px;
     text-align: center;
 }
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td {
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+} */
 .bold-border-bottom {
     border-bottom: 3px solid black;
 }
@@ -37,9 +53,19 @@ input[type="text"] {
     background-color: cornflowerblue;
 }
 
+/* #title {
+    
+   
+    
+} */
 
-.title {
+#restart {
 
-    margin-bottom: 70px;
-
+    width: 100px;
+    height: 25px;
+    background-color: rgb(233, 243, 44);
+    border-radius: 5px;  
+    cursor: pointer;  
+    border-style: none;
+    
 }
