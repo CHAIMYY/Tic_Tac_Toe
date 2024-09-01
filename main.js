@@ -2,7 +2,12 @@ const table = document.getElementById('gridTable');
 const restartBtn = document.getElementById('restart');
 const statusText = document.getElementById('status');
 let turn = 'x';
+let playerX = document.querySelector("#px");
+let playero = document.querySelector("#po");
+const startG = document.getElementById('startGame')
 
+
+function createTable(){
 
 for (let i = 0; i < 20; i++) {
     const row = table.insertRow(); 
@@ -12,7 +17,7 @@ for (let i = 0; i < 20; i++) {
 
         cell.addEventListener('click', function() {
            
-            console.log(`Cell clicked: Row ${i + 1}, Column ${j + 1}`);
+            // console.log(`Cell clicked: Row ${i + 1}, Column ${j + 1}`);
             
            
         
@@ -34,15 +39,41 @@ for (let i = 0; i < 20; i++) {
             }
 
 
-
         });
    
        
     }
     
 }
+}
 
 
 
+let datauserx;
+let datausero;
 
+if(localStorage.usersx != null){
+    datauserx = JSON.parse(localStorage.usersx)
+}else{
+    datauserx = [];
+}
+if(localStorage.userso != null){
+    datausero = JSON.parse(localStorage.userso)
+}else{
+    datausero = [];
+}
+
+startG.onclick = function (){
+
+ let namex = playerX.value;
+ let nameo = playero.value;
+
+ datauserx.push(namex);
+ datausero.push(nameo);
+ localStorage.setItem('usersx', JSON.stringify(datauserx));
+ localStorage.setItem('userso', JSON.stringify(datausero));
+
+
+ createTable()
+} 
 
