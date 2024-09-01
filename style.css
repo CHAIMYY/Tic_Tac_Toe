@@ -69,3 +69,46 @@ input[type="text"] {
     border-style: none;
     
 }
+
+#playerform {
+    width: 300px;
+    margin: 50px auto; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+}
+
+#playerform h3 {
+    margin-bottom: 20px; 
+    color: #333;
+}
+
+#playerform input[type="text"] {
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    margin-bottom: 15px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box;
+    font-size: 16px; 
+}
+
+#playerform button {
+    width: 100%;
+    padding: 10px; 
+    background-color: #007bff; 
+    border: none; 
+    border-radius: 5px; 
+    color: white;
+    font-size: 16px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+#playerform button:hover {
+    background-color: #0056b3; 
+}

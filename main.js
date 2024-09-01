@@ -7,6 +7,7 @@ let playero = document.querySelector("#po");
 const startG = document.getElementById('startGame')
 
 
+
 function createTable(){
 
 for (let i = 0; i < 20; i++) {
@@ -45,9 +46,11 @@ for (let i = 0; i < 20; i++) {
     }
     
 }
+
 }
+adduser()
 
-
+function adduser(){
 
 let datauserx;
 let datausero;
@@ -73,7 +76,14 @@ startG.onclick = function (){
  localStorage.setItem('usersx', JSON.stringify(datauserx));
  localStorage.setItem('userso', JSON.stringify(datausero));
 
+ document.querySelector("#playerform").style.display = "none";
+ 
 
  createTable()
 } 
+
+}
+
+
+
 
