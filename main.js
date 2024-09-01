@@ -5,7 +5,7 @@ let turn = 'x';
 let playerX = document.querySelector("#px");
 let playero = document.querySelector("#po");
 const startG = document.getElementById('startGame')
-
+let isGameOver = false;
 
 
 function createTable(){
@@ -46,11 +46,18 @@ for (let i = 0; i < 20; i++) {
     }
     
 }
-
+document.getElementById("restart").style.display = "block";
 }
+
+
 adduser()
 
+
+
+
 function adduser(){
+
+    
 
 let datauserx;
 let datausero;
@@ -65,6 +72,7 @@ if(localStorage.userso != null){
 }else{
     datausero = [];
 }
+document.getElementById("restart").style.display = "none";
 
 startG.onclick = function (){
 
@@ -82,8 +90,19 @@ startG.onclick = function (){
  createTable()
 } 
 
+
+
 }
 
 
 
-
+restartBtn.addEventListener('click', function() {
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+            table.rows[i].cells[j].textContent = '';
+        }
+    }
+    turn = 'x';
+    statusText.textContent = `Player ${turn}'s turn`;
+   
+});
