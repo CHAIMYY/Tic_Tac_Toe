@@ -16,38 +16,15 @@ for (let i = 0; i < 20; i++) {
         let cell = row.insertCell();  
         cell.textContent = '';
 
-        // cell.addEventListener('click', function() {
-           
-        //     // console.log(`Cell clicked: Row ${i + 1}, Column ${j + 1}`);
-            
+   
 
-        //     if(turn === 'x' && cell.textContent === ''){
-        //       cell.innerHTML = 'x';
-        //       turn = 'o';
-        //       statusText.textContent = `Player ${turn}'s turn`;
-
-        //     }else if(turn === 'o' && cell.textContent === ''){
-        //         cell.innerHTML = 'o';
-        //         turn = 'x';
-        //         statusText.textContent = `Player ${turn}'s turn`;
-
-        //     }else{
-               
-        //         statusText.textContent = `Player ${turn}'s turn`
-
-        //     }
-
-
-        // });
-
-
-        cell.addEventListener('click', function() {
-            if (cell.textContent === '') {
+        cell.addEventListener('click', function handleClick() {
+            if (cell.textContent === '' && !isGameOver) {
                 cell.textContent = turn;
                 if (checkWin(i, j, turn)) {
                     statusText.textContent = `Player ${turn} wins!`;
+                    isGameOver = true; // Set the flag to true to stop further moves
                     disableGrid();
-
                 } else {
                     turn = turn === 'x' ? 'o' : 'x';
                     statusText.textContent = `Player ${turn}'s turn`;
@@ -62,6 +39,14 @@ for (let i = 0; i < 20; i++) {
 document.getElementById("restart").style.display = "block";
 }
 
+
+function disableGrid() {
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+            table.rows[i].cells[j].removeEventListener('click', handleClick);
+        }
+    }
+}
 
 addPlayer()
 
@@ -114,9 +99,19 @@ restartBtn.addEventListener('click', function() {
         }
     }
     turn = 'x';
+    isGameOver = false; 
     statusText.textContent = `Player ${turn}'s turn`;
-    
+    enableGrid();
 });
+
+
+function enableGrid() {
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+            table.rows[i].cells[j].addEventListener('click', handleCellClick);
+        }
+    }
+}
 
 function checkDirection(row, col, player, rowDir, colDir) {
     let count = 1;
@@ -136,7 +131,7 @@ function checkWin(row, col, player) {
 
 function countDirection(row, col, player, rowDir, colDir) {
 
-    console.log(row, col, player, rowDir, colDir);
+    // console.log(row, col, player, rowDir, colDir);
 
     let count = 0;
     let r = row + rowDir;
@@ -156,25 +151,5 @@ function countDirection(row, col, player, rowDir, colDir) {
 
 }
 
-function disableGrid() {
-    for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 20; j++) {
-            table.rows[i].cells[j].removeEventListener('click', handleCellClick);
-        }
-    }
-}
 
-
-function handleCellClick() {
-    if (this.textContent === '') {
-        this.textContent = turn;
-        if (checkWin(this.parentNode.rowIndex, this.cellIndex, turn)) {
-            statusText.textContent = `Player ${turn} wins!`;
-            disableGrid();
-        } else {
-            turn = turn === 'x' ? 'o' : 'x';
-            statusText.textContent = `Player ${turn}'s turn`;
-        }
-    }
-}
 
