@@ -12,6 +12,8 @@ const scoreXElement = document.getElementById('scorex');
 const scoreOElement = document.getElementById('scoreo');
 
 function createTable() {
+
+   
     for (let i = 0; i < 20; i++) {
         const row = table.insertRow();
         for (let j = 0; j < 20; j++) {
@@ -34,8 +36,9 @@ function createTable() {
             });
         }
     }
+    
     document.getElementById('score').style.display = "block";
-    document.getElementById("restart").style.display = "block";
+    document.getElementById("buttons").style.display = "block";
 }
 
 function disableGrid() {
@@ -90,8 +93,10 @@ function countDirection(row, col, player, rowDir, colDir) {
 function addPlayer() {
     let datauserx = localStorage.getItem('usersx') ? JSON.parse(localStorage.getItem('usersx')) : [];
     let datausero = localStorage.getItem('userso') ? JSON.parse(localStorage.getItem('userso')) : [];
-    document.getElementById('restart').style.display = "none";
+    
+    document.getElementById('buttons').style.display = "none";
     document.getElementById('score').style.display = "none";
+    
     startGameBtn.onclick = function () {
         let namex = playerXInput.value || "Player X";
         let nameo = playerOInput.value || "Player O";
@@ -102,9 +107,11 @@ function addPlayer() {
         localStorage.setItem('usersx', JSON.stringify(datauserx));
         localStorage.setItem('userso', JSON.stringify(datausero));
 
-        
         document.querySelector("#playerform").style.display = "none";
+        
+        
         createTable();
+        document.getElementById('gridTable').style.display = "table"; 
     };
 }
 
@@ -138,3 +145,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
     addPlayer();
 });
 
+
+document.querySelector("#reset-game").addEventListener("click", resetGame);
+
+function resetGame() {
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+            table.rows[i].cells[j].textContent = '';
+        }
+    }
+
+    localStorage.setItem('scoreX', '0');
+    localStorage.setItem('scoreO', '0');
+    scoreXElement.innerText = '0';
+    scoreOElement.innerText = '0';
+
+    turn = 'x';
+    isGameOver = false;
+    statusText.textContent = `Player ${turn.toUpperCase()}'s turn`;
+
+    
+    document.getElementById('buttons').style.display = "none";
+    document.getElementById('score').style.display = "none";
+    document.getElementById('gridTable').style.display = "none";
+    document.querySelector("#playerform").style.display = "block";
+
+    
+    playerXInput.value = '';
+    playerOInput.value = '';
+
+    
+    table.innerHTML = ''; 
+
+    
+}
