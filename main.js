@@ -34,6 +34,7 @@ function createTable() {
             });
         }
     }
+    document.getElementById('score').style.display = "block";
     document.getElementById("restart").style.display = "block";
 }
 
@@ -89,7 +90,8 @@ function countDirection(row, col, player, rowDir, colDir) {
 function addPlayer() {
     let datauserx = localStorage.getItem('usersx') ? JSON.parse(localStorage.getItem('usersx')) : [];
     let datausero = localStorage.getItem('userso') ? JSON.parse(localStorage.getItem('userso')) : [];
-    
+    document.getElementById('restart').style.display = "none";
+    document.getElementById('score').style.display = "none";
     startGameBtn.onclick = function () {
         let namex = playerXInput.value || "Player X";
         let nameo = playerOInput.value || "Player O";
@@ -100,6 +102,7 @@ function addPlayer() {
         localStorage.setItem('usersx', JSON.stringify(datauserx));
         localStorage.setItem('userso', JSON.stringify(datausero));
 
+        
         document.querySelector("#playerform").style.display = "none";
         createTable();
     };
@@ -134,5 +137,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
     scoreOElement.innerText = localStorage.getItem('scoreO') || '0';
     addPlayer();
 });
-
 
